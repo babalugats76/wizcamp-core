@@ -42,9 +42,9 @@ export type Enrollment = {
     endDate: string;
     image: MediaImage | null;
     video: MediaVideo | null;
-    level?: ExperienceLevel | null;
-    program?: CohortProgram | null;
-    track?: CohortTrack | null;
+    level: ExperienceLevel;
+    program: CohortProgram;
+    track: CohortTrack;
     cohortStatus: CohortStatus;
     studentId: string | null;
     firstName: string;

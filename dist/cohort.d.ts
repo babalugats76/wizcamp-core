@@ -22,12 +22,12 @@ export type ExperienceLevel = {
 /** Program display token on a cohort — enough to render a badge. */
 export type CohortProgram = {
     name: string;
-    accent?: string;
+    accent: string;
 };
 /** Track display token on a cohort — enough to render a badge. */
 export type CohortTrack = {
     name: string;
-    color?: string;
+    color: string;
 };
 export type Cohort = {
     cohortSlug: string;
@@ -40,9 +40,9 @@ export type Cohort = {
     endDate: string;
     image: MediaImage | null;
     video: MediaVideo | null;
-    level?: ExperienceLevel | null;
-    program?: CohortProgram | null;
-    track?: CohortTrack | null;
+    level: ExperienceLevel;
+    program: CohortProgram;
+    track: CohortTrack;
     status: CohortStatus;
     createdAt: string;
     updatedAt: string;
@@ -113,9 +113,9 @@ export type CreateCohortInput = {
     endDate: string;
     image?: MediaImage;
     video?: MediaVideo;
-    level?: ExperienceLevel | null;
-    program?: CohortProgram | null;
-    track?: CohortTrack | null;
+    level: ExperienceLevel;
+    program: CohortProgram;
+    track: CohortTrack;
 };
 export type UpdateCohortInput = Partial<CreateCohortInput> & {
     status?: CohortStatus;
