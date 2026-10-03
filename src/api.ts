@@ -119,7 +119,14 @@ export async function parseEnvelope<T>(res: Response): Promise<Envelope<T>> {
     };
   }
 
-  // 2xx but did not match the schema — compatibility branch for endpoints not yet wrapped in the envelope.
-  // Delete once every route is confirmed enveloped.
-  return { success: true, data: json as T };
+  // 2xx but did not match the envelope schema — the backend always wraps
+  // HTTP-route responses in success()/error(), so this is not a valid success.
+  // Exceptions: the fire-and-forget tracking beacon (empty 200, no JSON body)
+  // and raw HTML dev-preview routes never go through parseEnvelope.
+  return {
+    success: false,
+    statusCode: res.status,
+    message: 'Malformed response from server',
+    reason: EnvelopeReason.TRANSPORT,
+  };
 }
