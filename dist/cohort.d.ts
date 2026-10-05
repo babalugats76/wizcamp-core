@@ -113,11 +113,11 @@ export type CreateCohortInput = {
     endDate: string;
     image?: MediaImage;
     video?: MediaVideo;
-    level: ExperienceLevel;
-    program: CohortProgram;
-    track: CohortTrack;
+    level: number;
+    programName: string;
+    trackName: string;
 };
-export type UpdateCohortInput = Partial<CreateCohortInput> & {
+export type UpdateCohortInput = Partial<Omit<CreateCohortInput, 'cohortSlug'>> & {
     status?: CohortStatus;
 };
 export declare function toStudentProgress(curriculum: ProgressInput): StudentProgress;
