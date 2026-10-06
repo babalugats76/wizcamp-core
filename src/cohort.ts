@@ -79,8 +79,8 @@ export type CohortSummary = Pick<Cohort,
   | 'endDate'
 >;
 
-/** Cohort identity plus pre-aggregated counts — admin cohort list only. */
-export type CohortStats = CohortSummary & {
+/** Cohort identity, classification (level/program/track), and pre-aggregated counts — admin cohort list only. */
+export type CohortStats = CohortSummary & Pick<Cohort, 'level' | 'program' | 'track'> & {
   unitCount:        number;
   enrollmentCounts: EnrollmentCounts;
 };
