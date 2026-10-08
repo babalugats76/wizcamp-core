@@ -1,5 +1,5 @@
 import { Temporal } from 'temporal-polyfill';
-import type { CohortStatus } from './primitives';
+import type { CohortIdentity, CohortStatus } from './primitives';
 /** How far before start the Join button activates. */
 export declare const IMMINENT_MS: number;
 /** How long past meeting end the grace window lasts (recording link visible). */
@@ -77,10 +77,7 @@ export type MeetingMeta = {
     label: string;
     tone: MeetingTone;
 };
-export type MeetingCohort = {
-    cohortSlug: string;
-    campName: string;
-    name: string;
+export type MeetingCohort = CohortIdentity & {
     status: CohortStatus;
     startDate: string;
     endDate: string;

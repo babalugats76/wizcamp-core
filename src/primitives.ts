@@ -25,12 +25,31 @@ export type CohortStatus = (typeof CohortStatus)[keyof typeof CohortStatus];
 //         so that link = embed[key] is mechanical. Reads embed; writes link.
 
 /** Minimal cohort identity — key plus display names. Embedded wherever another domain needs to show a cohort. */
-export type CohortIdentity = { cohortSlug: string; campName: string; name: string };
+export type CohortIdentity = {
+  cohortSlug: string;
+  campName: string;
+  name: string;
+};
 
 /** Lookup rows minus ord. rank/name is the key; name/label is display text. */
-export type CohortLevel = { rank: number; name: string; tagline: string; color: string };
-export type CohortProgram = { name: string; label: string; accent: string };
-export type CohortTrack = { name: string; label: string; color: string };
+export type CohortLevel = {
+  rank: number;
+  name: string;
+  tagline: string;
+  color: string;
+};
+
+export type CohortProgram = {
+  name: string;
+  label: string;
+  accent: string;
+};
+
+export type CohortTrack = {
+  name: string;
+  label: string;
+  color: string;
+};
 
 /** The three classification dimensions of a cohort, read expanded. */
 export type CohortTaxonomy = { level: CohortLevel; program: CohortProgram; track: CohortTrack };

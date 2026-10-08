@@ -1,1 +1,1 @@
-{"version":3,"file":"marketing.js","sourceRoot":"","sources":["../src/marketing.ts"],"names":[],"mappings":";AAAA,mFAAmF;AACnF,kGAAkG;;;AAElG,iFAAiF;AAEpE,QAAA,YAAY,GAAG;IAC1B,MAAM,EAAG,QAAQ;IACjB,OAAO,EAAE,SAAS;CACV,CAAC"}
+{"version":3,"file":"marketing.js","sourceRoot":"","sources":["../src/marketing.ts"],"names":[],"mappings":";AAAA,mFAAmF;AACnF,kGAAkG;;;AAElG,iFAAiF;AAEpE,QAAA,YAAY,GAAG;IAC1B,MAAM,EAAE,QAAQ;IAChB,OAAO,EAAE,SAAS;CACV,CAAC"}

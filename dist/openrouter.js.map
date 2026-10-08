@@ -1,1 +1,1 @@
-{"version":3,"file":"openrouter.js","sourceRoot":"","sources":["../src/openrouter.ts"],"names":[],"mappings":";AAAA,6FAA6F;AAC7F,kGAAkG;;;AAElG,iFAAiF;AAEpE,QAAA,uBAAuB,GAAG;IACrC,IAAI,EAAK,MAAM;IACf,KAAK,EAAI,OAAO;IAChB,MAAM,EAAG,QAAQ;IACjB,OAAO,EAAE,SAAS;CACV,CAAC"}
+{"version":3,"file":"openrouter.js","sourceRoot":"","sources":["../src/openrouter.ts"],"names":[],"mappings":";AAAA,6FAA6F;AAC7F,kGAAkG;;;AAElG,iFAAiF;AAEpE,QAAA,uBAAuB,GAAG;IACrC,IAAI,EAAE,MAAM;IACZ,KAAK,EAAE,OAAO;IACd,MAAM,EAAE,QAAQ;IAChB,OAAO,EAAE,SAAS;CACV,CAAC"}

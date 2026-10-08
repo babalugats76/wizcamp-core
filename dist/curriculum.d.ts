@@ -1,3 +1,4 @@
+import type { CohortIdentity } from './primitives';
 /** m:ss duration — unpadded minutes, zero-padded seconds capped at 59 (e.g. '3:07'). */
 export declare const DURATION_REGEX: RegExp;
 export declare const UnitLabel: {
@@ -172,21 +173,14 @@ export type PagePreview = {
         mdxContent: string;
         video?: PageVideo;
     };
-    cohort: {
-        cohortSlug: string;
-        campName: string;
-        name: string;
-    };
+    cohort: CohortIdentity;
     curriculum: UnitSummary[];
     resolvedMedia?: Record<string, ResolvedMedia | null>;
 };
 export type PageSource = Page & {
     mdxContent: string;
     videoSource?: VideoSource;
-    cohort: {
-        campName: string;
-        name: string;
-    };
+    cohort: Pick<CohortIdentity, 'campName' | 'name'>;
 };
 /** Slim response for student article body. */
 export type StudentPageContent = {
@@ -195,11 +189,7 @@ export type StudentPageContent = {
         mdxContent: string;
     };
     unit: Pick<Unit, 'unitId' | 'title' | 'position'>;
-    cohort: {
-        cohortSlug: string;
-        campName: string;
-        name: string;
-    };
+    cohort: CohortIdentity;
     resolvedMedia?: Record<string, ResolvedMedia | null>;
 };
 /** Discriminated on layout. */
@@ -218,7 +208,7 @@ export type UpdatePageInput = {
     metadata?: PageMetadata;
     expectedVersion?: number;
 };
-/** DELETE /lms/admin/cohorts/:cohortId/units/:unitId */
+/** DELETE /lms/admin/cohorts/:cohortSlug/units/:unitId */
 export type UnitDeleteResponse = {
     success: true;
     deletedPageCount: number;

@@ -90,10 +90,6 @@ exports.MEETING_AUDIENCE_LABEL = {
     [exports.MeetingAudience.COMMUNITY]: 'Community',
 };
 // ─── Functions ────────────────────────────────────────────────────────────────
-// intentionally private — not a wire value and currently unused; consumers needing it derive it from startTime + durationMinutes
-function meetingEndTime(startTime, durationMinutes) {
-    return startTime.add({ minutes: durationMinutes });
-}
 // intentionally private — display-string helper; output is a rendered label that never crosses a repo boundary
 function pluralize(n, unit) {
     return `${n} ${unit}${n === 1 ? '' : 's'}`;
@@ -124,9 +120,10 @@ function getMeetingPhase(startTime, durationMinutes, hasRecording, now, displayT
     }
     else if (status === exports.MeetingStatus.GRACE) {
         const agoMs = nowMs - endMs;
-        label = agoMs < HOUR_MS
-            ? `ended ${pluralize(Math.max(1, Math.floor(agoMs / MIN_MS)), 'min')} ago`
-            : `ended ${pluralize(Math.floor(agoMs / HOUR_MS), 'hour')} ago`;
+        label =
+            agoMs < HOUR_MS
+                ? `ended ${pluralize(Math.max(1, Math.floor(agoMs / MIN_MS)), 'min')} ago`
+                : `ended ${pluralize(Math.floor(agoMs / HOUR_MS), 'hour')} ago`;
     }
     else if (status === exports.MeetingStatus.PAST) {
         label = `${pluralize(Math.floor((nowMs - endMs) / DAY_MS), 'day')} ago`;
@@ -139,15 +136,19 @@ function getMeetingPhase(startTime, durationMinutes, hasRecording, now, displayT
         else if (diffMs < 48 * HOUR_MS) {
             const hours = Math.floor(diffMs / HOUR_MS);
             const mins = Math.floor((diffMs % HOUR_MS) / MIN_MS);
-            label = mins > 0
-                ? `in ${pluralize(hours, 'hour')} ${pluralize(mins, 'min')}`
-                : `in ${pluralize(hours, 'hour')}`;
+            label =
+                mins > 0
+                    ? `in ${pluralize(hours, 'hour')} ${pluralize(mins, 'min')}`
+                    : `in ${pluralize(hours, 'hour')}`;
         }
         else if (diffMs < 7 * DAY_MS) {
             label = `in ${pluralize(Math.floor(diffMs / DAY_MS), 'day')}`;
         }
         else {
-            label = startTime.toZonedDateTimeISO(displayTz).toPlainDate().toLocaleString('en-US', { month: 'short', day: 'numeric' });
+            label = startTime
+                .toZonedDateTimeISO(displayTz)
+                .toPlainDate()
+                .toLocaleString('en-US', { month: 'short', day: 'numeric' });
         }
     }
     return {
