@@ -2,7 +2,7 @@
 // Exports the meeting const objects, lookup maps, getMeetingPhase and the meeting request/response shapes.
 
 import { Temporal } from 'temporal-polyfill';
-import type { CohortStatus } from './primitives';
+import type { CohortIdentity, CohortStatus } from './primitives';
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -124,10 +124,7 @@ export type MeetingMeta = {
   tone:  MeetingTone;
 };
 
-export type MeetingCohort = {
-  cohortSlug: string;
-  campName: string;
-  name: string;
+export type MeetingCohort = CohortIdentity & {
   status: CohortStatus;
   startDate: string;
   endDate: string;

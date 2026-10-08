@@ -1,6 +1,8 @@
 // Curriculum domain: units, pages, video providers, media records and student-facing curriculum views.
 // Exports UnitLabel, PageStatus, PageLayout, VideoProvider, MediaKind, ProgressStatus, DURATION_REGEX and the related shapes.
 
+import type { CohortIdentity } from './primitives';
+
 // ─── Constants ────────────────────────────────────────────────────────────────
 
 /** m:ss duration — unpadded minutes, zero-padded seconds capped at 59 (e.g. '3:07'). */
@@ -190,7 +192,7 @@ export type CohortCurriculum = (Unit & { pages: Page[] })[];
 /** Admin page preview context. */
 export type PagePreview = {
   page: Page & { mdxContent: string; video?: PageVideo };
-  cohort: { cohortSlug: string; campName: string; name: string };
+  cohort: CohortIdentity;
   curriculum: UnitSummary[];
   resolvedMedia?: Record<string, ResolvedMedia | null>;
 };
@@ -198,14 +200,14 @@ export type PagePreview = {
 export type PageSource = Page & {
   mdxContent: string;
   videoSource?: VideoSource;
-  cohort: { campName: string; name: string };
+  cohort: Pick<CohortIdentity, 'campName' | 'name'>;
 };
 
 /** Slim response for student article body. */
 export type StudentPageContent = {
   page: Pick<Page, 'pageId' | 'slug' | 'title' | 'layout'> & { video?: PageVideo; mdxContent: string };
   unit: Pick<Unit, 'unitId' | 'title' | 'position'>;
-  cohort: { cohortSlug: string; campName: string; name: string };
+  cohort: CohortIdentity;
   resolvedMedia?: Record<string, ResolvedMedia | null>;
 };
 
@@ -227,7 +229,7 @@ export type UpdatePageInput = {
   expectedVersion?: number;
 };
 
-/** DELETE /lms/admin/cohorts/:cohortId/units/:unitId */
+/** DELETE /lms/admin/cohorts/:cohortSlug/units/:unitId */
 export type UnitDeleteResponse = {
   success: true;
   deletedPageCount: number;

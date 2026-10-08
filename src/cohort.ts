@@ -1,7 +1,17 @@
 // LMS / operational domain: the Cohort entity, admin/student cohort views, progress computation and cohort mutation inputs.
-// Sits at the top of the module graph; re-exports CohortFormat and CohortStatus from primitives for consumer compatibility.
+// Sits at the top of the module graph; re-exports CohortFormat, CohortStatus and the cohort identity/taxonomy
+// types (CohortIdentity, CohortLevel, CohortProgram, CohortTrack, CohortTaxonomy, COHORT_FORMAT_LABEL) from
+// primitives for consumer compatibility.
 
-import type { CohortFormat, CohortStatus } from './primitives';
+import type {
+  CohortFormat,
+  CohortStatus,
+  CohortIdentity,
+  CohortLevel,
+  CohortProgram,
+  CohortTrack,
+  CohortTaxonomy,
+} from './primitives';
 import type { MediaImage, MediaVideo } from './media';
 import type {
   ProgressSummary,
@@ -22,36 +32,7 @@ export const SLUG_REGEX = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-/**
- * Instructional level display token — set by admin at cohort-creation time.
- * Enough to render a badge. Resolved from the local LEVELS constant in the
- * backend mapper; the contract carries the full shape so consumers need no lookup.
- * Lives in cohort.ts (LMS domain). Promotes to primitives.ts only if a second
- * non-LMS domain ever needs it.
- */
-export type ExperienceLevel = {
-  rank:    number;
-  name:    string;
-  tagline: string;
-  color:   string;
-};
-
-/** Program display token on a cohort — enough to render a badge. */
-export type CohortProgram = {
-  name:   string;
-  accent: string;
-};
-
-/** Track display token on a cohort — enough to render a badge. */
-export type CohortTrack = {
-  name:  string;
-  color: string;
-};
-
-export type Cohort = {
-  cohortSlug: string;
-  campName: string;
-  name: string;
+export type Cohort = CohortIdentity & CohortTaxonomy & {
   format: CohortFormat;
   unitLabel: UnitLabel;
   description: string | null;
@@ -59,38 +40,20 @@ export type Cohort = {
   endDate: string;
   image: MediaImage | null;
   video: MediaVideo | null;
-  level:   ExperienceLevel;
-  program: CohortProgram;
-  track:   CohortTrack;
   status: CohortStatus;
   createdAt: string;
   updatedAt: string;
+  version: number;
 };
 
-/** Lean cohort identity descriptor — surface-neutral. */
-export type CohortSummary = Pick<Cohort,
-  | 'cohortSlug'
-  | 'campName'
-  | 'name'
-  | 'format'
-  | 'unitLabel'
-  | 'status'
-  | 'startDate'
-  | 'endDate'
->;
+export type CohortSummary = CohortIdentity &
+  Pick<Cohort, 'format' | 'unitLabel' | 'status' | 'startDate' | 'endDate'>;
 
-/** Cohort identity, classification (level/program/track), and pre-aggregated counts — admin cohort list only. */
-export type CohortStats = CohortSummary & Pick<Cohort, 'level' | 'program' | 'track'> & {
-  unitCount:        number;
-  enrollmentCounts: EnrollmentCounts;
-};
+export type CohortCounts = { unitCount: number; enrollmentCounts: EnrollmentCounts };
 
-/** Admin operational view of a cohort. */
-export type CohortDetail = {
-  cohort: Cohort;
-  unitCount: number;
-  enrollmentCounts: EnrollmentCounts;
-};
+export type CohortDetail = { cohort: Cohort } & CohortCounts;
+
+export type CohortStats = { cohort: CohortSummary & CohortTaxonomy } & CohortCounts;
 
 export type StudentCurriculum = {
   cohort: Pick<Cohort, 'cohortSlug' | 'campName' | 'name' | 'unitLabel' | 'status'>;
@@ -139,25 +102,24 @@ export type StudentEngagement = {
   pages:        PageViewDetail[];
 };
 
-export type CreateCohortInput = {
-  cohortSlug:   string;
-  campName:     string;
-  name:         string;
-  format?:      CohortFormat;
-  unitLabel?:   UnitLabel;
-  description?: string;
-  startDate:    string;
-  endDate:      string;
-  image?:       MediaImage;
-  video?:       MediaVideo;
-  level:        number;
-  programName:  string;
-  trackName:    string;
+type CohortLinks = {
+  levelRank:   CohortLevel['rank'];
+  programName: CohortProgram['name'];
+  trackName:   CohortTrack['name'];
 };
 
-export type UpdateCohortInput = Partial<Omit<CreateCohortInput, 'cohortSlug'>> & {
-  status?: CohortStatus;
-};
+export type CreateCohortInput =
+  Pick<Cohort, 'cohortSlug' | 'campName' | 'name' | 'startDate' | 'endDate'> &
+  Partial<Pick<Cohort, 'format' | 'unitLabel' | 'description' | 'image' | 'video'>> &
+  CohortLinks;
+
+/** Omitted = unchanged; null = clear (description / image / video). */
+export type UpdateCohortInput =
+  Partial<Pick<Cohort,
+    'campName' | 'name' | 'format' | 'unitLabel' | 'description' |
+    'startDate' | 'endDate' | 'image' | 'video' | 'status'
+  > & CohortLinks> &
+  { expectedVersion?: number };
 
 // ─── Functions ────────────────────────────────────────────────────────────────
 
@@ -236,4 +198,5 @@ export function toStudentProgress(curriculum: ProgressInput): StudentProgress {
 
 // ─── Re-exports ───────────────────────────────────────────────────────────────
 
-export { CohortFormat, CohortStatus } from './primitives';
+export type { CohortIdentity, CohortLevel, CohortProgram, CohortTrack, CohortTaxonomy } from './primitives';
+export { CohortFormat, CohortStatus, COHORT_FORMAT_LABEL } from './primitives';

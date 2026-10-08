@@ -1,9 +1,8 @@
 // LMS / operational domain: enrollment lifecycle, the flat Enrollment join type and enrollment mutation/response shapes.
 // Exports EnrollmentStatus, ENROLLMENT_TRANSITIONS, Enrollment, EnrollmentSummary, CohortRoster and related inputs.
 
-import type { CohortFormat, CohortStatus } from './primitives';
+import type { CohortFormat, CohortStatus, CohortLevel, CohortProgram, CohortTrack } from './primitives';
 import type { MediaImage, MediaVideo } from './media';
-import type { ExperienceLevel, CohortProgram, CohortTrack } from './cohort';
 import type { UnitLabel, ProgressSummary } from './curriculum';
 import type { Student, OnboardingMode } from './auth';
 
@@ -61,7 +60,7 @@ export type Enrollment = {
   endDate: string;
   image: MediaImage | null;
   video: MediaVideo | null;
-  level:   ExperienceLevel;
+  level:   CohortLevel;
   program: CohortProgram;
   track:   CohortTrack;
   cohortStatus: CohortStatus;
