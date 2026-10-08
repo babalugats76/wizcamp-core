@@ -10,7 +10,7 @@ import { z } from 'zod';
 
 /** Why a request failed, as classified by the client: the backend rejected it, or it never got through. */
 export const EnvelopeReason = {
-  REJECTED:  'rejected',
+  REJECTED: 'rejected',
   TRANSPORT: 'transport',
 } as const;
 export type EnvelopeReason = (typeof EnvelopeReason)[keyof typeof EnvelopeReason];

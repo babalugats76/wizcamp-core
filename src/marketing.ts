@@ -4,7 +4,7 @@
 // ─── Constants ────────────────────────────────────────────────────────────────
 
 export const AttendeeRole = {
-  PARENT:  'parent',
+  PARENT: 'parent',
   STUDENT: 'student',
 } as const;
 export type AttendeeRole = (typeof AttendeeRole)[keyof typeof AttendeeRole];

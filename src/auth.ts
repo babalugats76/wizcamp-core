@@ -5,7 +5,7 @@
 
 export const UserRole = {
   STUDENT: 'student',
-  ADMIN:   'admin',
+  ADMIN: 'admin',
 } as const;
 export type UserRole = (typeof UserRole)[keyof typeof UserRole];
 
@@ -16,14 +16,14 @@ export const OAuthProvider = {
 export type OAuthProvider = (typeof OAuthProvider)[keyof typeof OAuthProvider];
 
 export const StudentStatus = {
-  ACTIVE:    'active',
+  ACTIVE: 'active',
   SUSPENDED: 'suspended',
 } as const;
 export type StudentStatus = (typeof StudentStatus)[keyof typeof StudentStatus];
 
 export const UserTheme = {
-  LIGHT:  'light',
-  DARK:   'dark',
+  LIGHT: 'light',
+  DARK: 'dark',
   SYSTEM: 'system',
 } as const;
 export type UserTheme = (typeof UserTheme)[keyof typeof UserTheme];
@@ -31,13 +31,13 @@ export type UserTheme = (typeof UserTheme)[keyof typeof UserTheme];
 /** How a student gets into the LMS after enrolling: activate a new account, or just access an existing one. */
 export const OnboardingMode = {
   ACTIVATION: 'activation',
-  ACCESS:     'access',
+  ACCESS: 'access',
 } as const;
 export type OnboardingMode = (typeof OnboardingMode)[keyof typeof OnboardingMode];
 
 export const EditorAutoSave = {
-  LIVE:   'live',
-  AUTO:   'auto',
+  LIVE: 'live',
+  AUTO: 'auto',
   MANUAL: 'manual',
 } as const;
 export type EditorAutoSave = (typeof EditorAutoSave)[keyof typeof EditorAutoSave];

@@ -7,9 +7,9 @@ import type { CohortFormat } from './primitives';
 // ─── Constants ────────────────────────────────────────────────────────────────
 
 export const CampStatus = {
-  UPCOMING:    'upcoming',
+  UPCOMING: 'upcoming',
   IN_PROGRESS: 'in-progress',
-  CONCLUDED:   'concluded',
+  CONCLUDED: 'concluded',
 } as const;
 export type CampStatus = (typeof CampStatus)[keyof typeof CampStatus];
 
@@ -31,7 +31,7 @@ export type CampPhase = {
  * Distinct from cohort.ts's `Cohort` (the LMS operational entity).
  */
 export type CampSession = {
-  id: string;         // Square ITEM_VARIATION id — the purchasable session
+  id: string; // Square ITEM_VARIATION id — the purchasable session
   sku: string;
   name: string;
   amount: number;
@@ -51,7 +51,7 @@ export type CampSession = {
 
 /** A camp with its available sessions, as returned by the /camps endpoint. */
 export type Camp = {
-  id: string;         // Square ITEM id — stable join key for CMS content
+  id: string; // Square ITEM id — stable join key for CMS content
   name: string;
   category: string;
   rootCategory: string;
@@ -68,7 +68,11 @@ export type Camp = {
 // intentionally private — returns a Temporal.PlainDate that never crosses the wire (fails admission clause 1)
 function parseDateOrNull(raw: string | undefined | null): Temporal.PlainDate | null {
   if (!raw) return null;
-  try { return Temporal.PlainDate.from(raw); } catch { return null; }
+  try {
+    return Temporal.PlainDate.from(raw);
+  } catch {
+    return null;
+  }
 }
 
 /**
@@ -84,12 +88,12 @@ function parseDateOrNull(raw: string | undefined | null): Temporal.PlainDate | n
  */
 export function getCampPhase(
   startDate: string | undefined,
-  endDate:   string | undefined,
-  now:       Temporal.Instant,
-  tz:        string,
+  endDate: string | undefined,
+  now: Temporal.Instant,
+  tz: string
 ): CampPhase {
   const start = parseDateOrNull(startDate);
-  const end   = parseDateOrNull(endDate);
+  const end = parseDateOrNull(endDate);
 
   if (!start || !end) {
     return { status: CampStatus.UPCOMING, label: '', isActive: false };

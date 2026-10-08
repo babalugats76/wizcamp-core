@@ -4,12 +4,13 @@
 // ─── Constants ────────────────────────────────────────────────────────────────
 
 export const OpenRouterKeyLimitReset = {
-  NONE:    'none',
-  DAILY:   'daily',
-  WEEKLY:  'weekly',
+  NONE: 'none',
+  DAILY: 'daily',
+  WEEKLY: 'weekly',
   MONTHLY: 'monthly',
 } as const;
-export type OpenRouterKeyLimitReset = (typeof OpenRouterKeyLimitReset)[keyof typeof OpenRouterKeyLimitReset];
+export type OpenRouterKeyLimitReset =
+  (typeof OpenRouterKeyLimitReset)[keyof typeof OpenRouterKeyLimitReset];
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 

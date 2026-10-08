@@ -10,46 +10,46 @@ export const DURATION_REGEX = /^\d+:[0-5]\d$/;
 
 export const UnitLabel = {
   SESSION: 'session',
-  WEEK:    'week',
-  MODULE:  'module',
-  DAY:     'day',
-  PART:    'part',
-  UNIT:    'unit',
+  WEEK: 'week',
+  MODULE: 'module',
+  DAY: 'day',
+  PART: 'part',
+  UNIT: 'unit',
 } as const;
 export type UnitLabel = (typeof UnitLabel)[keyof typeof UnitLabel];
 
 export const PageStatus = {
-  DRAFT:     'draft',
+  DRAFT: 'draft',
   PUBLISHED: 'published',
 } as const;
 export type PageStatus = (typeof PageStatus)[keyof typeof PageStatus];
 
 export const PageLayout = {
-  DOC:   'doc',
+  DOC: 'doc',
   VIDEO: 'video',
 } as const;
 export type PageLayout = (typeof PageLayout)[keyof typeof PageLayout];
 
 export const VideoProvider = {
   EXTERNAL: 'external',
-  HOSTED:   'hosted',
-  LOOM:     'loom',
-  YOUTUBE:  'youtube',
+  HOSTED: 'hosted',
+  LOOM: 'loom',
+  YOUTUBE: 'youtube',
 } as const;
 export type VideoProvider = (typeof VideoProvider)[keyof typeof VideoProvider];
 
 export const MediaKind = {
   VIDEO: 'video',
   IMAGE: 'image',
-  FILE:  'file',
+  FILE: 'file',
 } as const;
 export type MediaKind = (typeof MediaKind)[keyof typeof MediaKind];
 
 export const ProgressStatus = {
   NOT_STARTED: 'not_started',
   IN_PROGRESS: 'in_progress',
-  CAUGHT_UP:   'caught_up',
-  COMPLETED:   'completed',
+  CAUGHT_UP: 'caught_up',
+  COMPLETED: 'completed',
 } as const;
 export type ProgressStatus = (typeof ProgressStatus)[keyof typeof ProgressStatus];
 
@@ -57,9 +57,9 @@ export type ProgressStatus = (typeof ProgressStatus)[keyof typeof ProgressStatus
 
 export type VideoSource =
   | { type: typeof VideoProvider.EXTERNAL; url: string }
-  | { type: typeof VideoProvider.HOSTED;   mediaId: string }
-  | { type: typeof VideoProvider.LOOM;     loomVideoId: string }
-  | { type: typeof VideoProvider.YOUTUBE;  youtubeVideoId: string };
+  | { type: typeof VideoProvider.HOSTED; mediaId: string }
+  | { type: typeof VideoProvider.LOOM; loomVideoId: string }
+  | { type: typeof VideoProvider.YOUTUBE; youtubeVideoId: string };
 
 export type Unit = {
   unitId: string;
@@ -112,13 +112,13 @@ export type Page = {
 
 /** Navigation-ready page descriptor. */
 export type PageSummary = {
-  pageId:   string;
-  slug:     string;
-  title:    string;
+  pageId: string;
+  slug: string;
+  title: string;
   position: number;
-  status:   PageStatus;
-  layout:   PageLayout;
-  video?:   VideoMeta;
+  status: PageStatus;
+  layout: PageLayout;
+  video?: VideoMeta;
 };
 
 export type MediaPoster = {
@@ -178,12 +178,12 @@ export type StudentCurriculumPage = PageSummary & {
 
 /** Unified student-facing unit in a cohort curriculum. */
 export type StudentCurriculumUnit = {
-  unitId:       string;
-  title:        string;
-  position:     number;
-  isLocked:     boolean;
+  unitId: string;
+  title: string;
+  position: number;
+  isLocked: boolean;
   description?: string;
-  pages:        StudentCurriculumPage[];
+  pages: StudentCurriculumPage[];
 };
 
 /** Admin curriculum tree — all units with nested pages, including drafts. */
@@ -205,7 +205,10 @@ export type PageSource = Page & {
 
 /** Slim response for student article body. */
 export type StudentPageContent = {
-  page: Pick<Page, 'pageId' | 'slug' | 'title' | 'layout'> & { video?: PageVideo; mdxContent: string };
+  page: Pick<Page, 'pageId' | 'slug' | 'title' | 'layout'> & {
+    video?: PageVideo;
+    mdxContent: string;
+  };
   unit: Pick<Unit, 'unitId' | 'title' | 'position'>;
   cohort: CohortIdentity;
   resolvedMedia?: Record<string, ResolvedMedia | null>;
@@ -223,9 +226,9 @@ export type PageMetadata =
 
 /** Page save payload. */
 export type UpdatePageInput = {
-  title?:           string;
-  content?:         string;
-  metadata?:        PageMetadata;
+  title?: string;
+  content?: string;
+  metadata?: PageMetadata;
   expectedVersion?: number;
 };
 
@@ -241,31 +244,31 @@ export type UnitDeleteResponse = {
  * student+page combination.
  */
 export type PageViewDetail = {
-  pageId:         string;
+  pageId: string;
   firstVisitedAt: string;
-  lastVisitedAt:  string;
-  visitCount:     number;
+  lastVisitedAt: string;
+  visitCount: number;
 };
 
 export type ProgressSummary = {
-  pagesVisited:   number;
+  pagesVisited: number;
   pagesAvailable: number;
-  progressPct:    number;
-  unlockedUnits:  number;
-  totalUnits:     number;
-  dripPct:        number;
-  status:         ProgressStatus;
+  progressPct: number;
+  unlockedUnits: number;
+  totalUnits: number;
+  dripPct: number;
+  status: ProgressStatus;
 };
 
 export type CreateUnitInput = {
-  title:        string;
+  title: string;
   description?: string;
-  position?:    number;
+  position?: number;
 };
 
 export type UpdateUnitInput = {
-  title?:       string;
+  title?: string;
   description?: string;
-  position?:    number;
-  isLocked?:    boolean;
+  position?: number;
+  isLocked?: boolean;
 };

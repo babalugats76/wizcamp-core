@@ -1,5 +1,12 @@
 import { describe, expectTypeOf, it } from 'vitest';
-import type { Cohort, CohortStats, CohortSummary, CohortTaxonomy, CreateCohortInput, UpdateCohortInput } from './cohort';
+import type {
+  Cohort,
+  CohortStats,
+  CohortSummary,
+  CohortTaxonomy,
+  CreateCohortInput,
+  UpdateCohortInput,
+} from './cohort';
 
 describe('cohort contract types', () => {
   it('Cohort satisfies the summary + taxonomy projections', () => {

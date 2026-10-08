@@ -1,7 +1,13 @@
 // LMS / operational domain: enrollment lifecycle, the flat Enrollment join type and enrollment mutation/response shapes.
 // Exports EnrollmentStatus, ENROLLMENT_TRANSITIONS, Enrollment, EnrollmentSummary, CohortRoster and related inputs.
 
-import type { CohortFormat, CohortStatus, CohortLevel, CohortProgram, CohortTrack } from './primitives';
+import type {
+  CohortFormat,
+  CohortStatus,
+  CohortLevel,
+  CohortProgram,
+  CohortTrack,
+} from './primitives';
 import type { MediaImage, MediaVideo } from './media';
 import type { UnitLabel, ProgressSummary } from './curriculum';
 import type { Student, OnboardingMode } from './auth';
@@ -10,8 +16,8 @@ import type { Student, OnboardingMode } from './auth';
 
 export const EnrollmentStatus = {
   PENDING_ONBOARDING: 'pending_onboarding',
-  ACTIVE:             'active',
-  REMOVED:            'removed',
+  ACTIVE: 'active',
+  REMOVED: 'removed',
 } as const;
 export type EnrollmentStatus = (typeof EnrollmentStatus)[keyof typeof EnrollmentStatus];
 
@@ -23,8 +29,8 @@ export type EnrollmentStatus = (typeof EnrollmentStatus)[keyof typeof Enrollment
  */
 export const ENROLLMENT_TRANSITIONS: Record<EnrollmentStatus, EnrollmentStatus[]> = {
   [EnrollmentStatus.PENDING_ONBOARDING]: [EnrollmentStatus.ACTIVE, EnrollmentStatus.REMOVED],
-  [EnrollmentStatus.ACTIVE]:             [EnrollmentStatus.REMOVED],
-  [EnrollmentStatus.REMOVED]:            [EnrollmentStatus.ACTIVE],
+  [EnrollmentStatus.ACTIVE]: [EnrollmentStatus.REMOVED],
+  [EnrollmentStatus.REMOVED]: [EnrollmentStatus.ACTIVE],
 };
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -60,9 +66,9 @@ export type Enrollment = {
   endDate: string;
   image: MediaImage | null;
   video: MediaVideo | null;
-  level:   CohortLevel;
+  level: CohortLevel;
   program: CohortProgram;
-  track:   CohortTrack;
+  track: CohortTrack;
   cohortStatus: CohortStatus;
   // Student identity (coalesced)
   studentId: string | null;
@@ -74,11 +80,9 @@ export type Enrollment = {
 };
 
 /** Minimal enrollment identity for student-facing surfaces. */
-export type EnrollmentSummary = Pick<Enrollment,
-  | 'enrollmentId'
-  | 'status'
-  | 'enrolledAt'
-  | 'cohortSlug'
+export type EnrollmentSummary = Pick<
+  Enrollment,
+  'enrollmentId' | 'status' | 'enrolledAt' | 'cohortSlug'
 >;
 
 /** POST /lms/admin/enrollments — enrollment + onboarding signal. */
@@ -98,11 +102,11 @@ export type StudentEnrollments = Student & {
 };
 
 export type CreateEnrollmentInput = {
-  cohortSlug:       string;
-  studentEmail:     string;
+  cohortSlug: string;
+  studentEmail: string;
   studentFirstName: string;
-  studentLastName:  string;
-  parentEmail?:     string;
+  studentLastName: string;
+  parentEmail?: string;
 };
 
 /**
@@ -111,4 +115,7 @@ export type CreateEnrollmentInput = {
  * Each row is a full Enrollment extended with server-computed progress scalars
  * and last-active timestamp.
  */
-export type CohortRoster = (Enrollment & { progress: ProgressSummary; lastActiveAt: string | null })[];
+export type CohortRoster = (Enrollment & {
+  progress: ProgressSummary;
+  lastActiveAt: string | null;
+})[];

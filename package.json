@@ -61,11 +61,15 @@
   "scripts": {
     "build": "npx tsc",
     "clean": "rm -rf dist",
-    "test": "vitest run"
+    "test": "vitest run",
+    "lint": "oxlint --config oxlint.json .",
+    "lint:fix": "oxlint --config oxlint.json --fix .",
+    "format": "prettier --write 'src/**/*.ts'",
+    "format:check": "prettier --check 'src/**/*.ts'"
   },
   "peerDependencies": {
-    "zod": "^4.5.2",
-    "temporal-polyfill": "^1.0.5"
+    "temporal-polyfill": "^1.0.5",
+    "zod": "^4.5.2"
   },
   "peerDependenciesMeta": {
     "zod": {
@@ -76,6 +80,8 @@
     }
   },
   "devDependencies": {
+    "oxlint": "^1.87.0",
+    "prettier": "^3.9.9",
     "temporal-polyfill": "^1.0.5",
     "typescript": "^5.7.0",
     "vitest": "^5.0.1",

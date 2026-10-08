@@ -5,16 +5,16 @@
 
 /** How a cohort is delivered. */
 export const CohortFormat = {
-  FLEX:       'flex',
-  BOOT:       'boot',
+  FLEX: 'flex',
+  BOOT: 'boot',
   SELF_PACED: 'self-paced',
 } as const;
 export type CohortFormat = (typeof CohortFormat)[keyof typeof CohortFormat];
 
 /** Cohort lifecycle. */
 export const CohortStatus = {
-  DRAFT:     'draft',
-  ACTIVE:    'active',
+  DRAFT: 'draft',
+  ACTIVE: 'active',
   CONCLUDED: 'concluded',
 } as const;
 export type CohortStatus = (typeof CohortStatus)[keyof typeof CohortStatus];
@@ -28,16 +28,16 @@ export type CohortStatus = (typeof CohortStatus)[keyof typeof CohortStatus];
 export type CohortIdentity = { cohortSlug: string; campName: string; name: string };
 
 /** Lookup rows minus ord. rank/name is the key; name/label is display text. */
-export type CohortLevel   = { rank: number; name: string; tagline: string; color: string };
+export type CohortLevel = { rank: number; name: string; tagline: string; color: string };
 export type CohortProgram = { name: string; label: string; accent: string };
-export type CohortTrack   = { name: string; label: string; color: string };
+export type CohortTrack = { name: string; label: string; color: string };
 
 /** The three classification dimensions of a cohort, read expanded. */
 export type CohortTaxonomy = { level: CohortLevel; program: CohortProgram; track: CohortTrack };
 
 /** Display labels for CohortFormat values. */
 export const COHORT_FORMAT_LABEL: Record<CohortFormat, string> = {
-  [CohortFormat.FLEX]:       'Flex',
-  [CohortFormat.BOOT]:       'Boot',
+  [CohortFormat.FLEX]: 'Flex',
+  [CohortFormat.BOOT]: 'Boot',
   [CohortFormat.SELF_PACED]: 'Self-Paced',
 };
