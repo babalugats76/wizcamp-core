@@ -1,6 +1,8 @@
 // Authentication and user identity types: users, students, sessions, settings and onboarding.
 // Exports UserRole, OAuthProvider, StudentStatus, UserTheme, OnboardingMode, EditorAutoSave and the Student/AuthUser/settings shapes.
 
+import type { CohortIdentity } from './primitives';
+
 // ─── Constants ────────────────────────────────────────────────────────────────
 
 export const UserRole = {
@@ -89,9 +91,7 @@ export type MagicLinkValidation = {
   valid: true;
   returning: boolean;
   contactEmail: string;
-  cohortSlug: string;
-  campName: string;
-  cohortName: string;
+  cohort: CohortIdentity;
   enrollmentId: string;
 };
 
