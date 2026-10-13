@@ -1,6 +1,6 @@
 "use strict";
-// LMS / operational domain: enrollment lifecycle, the flat Enrollment join type and enrollment mutation/response shapes.
-// Exports EnrollmentStatus, ENROLLMENT_TRANSITIONS, Enrollment, EnrollmentSummary, CohortRoster and related inputs.
+// LMS / operational domain: enrollment lifecycle, the Enrollment type (with embedded cohort and contact) and enrollment mutation/response shapes.
+// Exports EnrollmentStatus, ENROLLMENT_TRANSITIONS, EnrollmentContact, Enrollment, EnrollmentSummary, CohortRoster and related inputs.
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ENROLLMENT_TRANSITIONS = exports.EnrollmentStatus = void 0;
 // ─── Constants ────────────────────────────────────────────────────────────────

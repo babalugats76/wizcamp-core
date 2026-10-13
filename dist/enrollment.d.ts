@@ -1,6 +1,5 @@
-import type { CohortFormat, CohortStatus, CohortLevel, CohortProgram, CohortTrack } from './primitives';
-import type { MediaImage, MediaVideo } from './media';
-import type { UnitLabel, ProgressSummary } from './curriculum';
+import type { Cohort } from './cohort';
+import type { ProgressSummary } from './curriculum';
 import type { Student, OnboardingMode } from './auth';
 export declare const EnrollmentStatus: {
     readonly PENDING_ONBOARDING: "pending_onboarding";
@@ -19,8 +18,18 @@ export type EnrollmentCounts = {
     removed: number;
     total: number;
 };
+/** Student identity for an enrollment (coalesced from the enrollment's student record). */
+export type EnrollmentContact = {
+    studentId: string | null;
+    firstName: string;
+    lastName: string;
+    email: string;
+    avatarUrl: string | null;
+    parentEmail: string | null;
+};
 /**
- * Flat compound join type — enrollment row + cohort context + coalesced student identity.
+ * Enrollment row with its cohort and contact embedded.
+ * Reads embed (cohort, contact); writes link via cohortSlug.
  */
 export type Enrollment = {
     enrollmentId: string;
@@ -32,25 +41,8 @@ export type Enrollment = {
     onboardedAt: string | null;
     removedAt: string | null;
     updatedAt: string;
-    campName: string;
-    cohortName: string;
-    unitLabel: UnitLabel;
-    format: CohortFormat;
-    description: string | null;
-    startDate: string;
-    endDate: string;
-    image: MediaImage | null;
-    video: MediaVideo | null;
-    level: CohortLevel;
-    program: CohortProgram;
-    track: CohortTrack;
-    cohortStatus: CohortStatus;
-    studentId: string | null;
-    firstName: string;
-    lastName: string;
-    email: string;
-    avatarUrl: string | null;
-    parentEmail: string | null;
+    cohort: Cohort;
+    contact: EnrollmentContact;
 };
 /** Minimal enrollment identity for student-facing surfaces. */
 export type EnrollmentSummary = Pick<Enrollment, 'enrollmentId' | 'status' | 'enrolledAt' | 'cohortSlug'>;

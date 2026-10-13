@@ -1,3 +1,4 @@
+import type { CohortIdentity } from './primitives';
 export declare const UserRole: {
     readonly STUDENT: "student";
     readonly ADMIN: "admin";
@@ -73,9 +74,7 @@ export type MagicLinkValidation = {
     valid: true;
     returning: boolean;
     contactEmail: string;
-    cohortSlug: string;
-    campName: string;
-    cohortName: string;
+    cohort: CohortIdentity;
     enrollmentId: string;
 };
 /** Fields only the admin endpoint returns */
