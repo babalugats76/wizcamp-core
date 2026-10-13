@@ -56,6 +56,11 @@ export type OpenRouterKeyProvisionResult = OpenRouterKeyMetadata & {
   apiKey: string;
 };
 
+/** GET /lms/admin/students/:studentId/ai-key — OpenRouter metadata stitched with the stored plaintext. */
+export type OpenRouterKey = OpenRouterKeyMetadata & {
+  apiKey: string | null;
+};
+
 /** AI model option — used by OpenRouter to describe an available model. */
 export type OpenRouterModelOption = {
   id: string;
