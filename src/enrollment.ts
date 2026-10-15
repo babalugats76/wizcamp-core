@@ -79,6 +79,14 @@ export type EnrollmentCreateResponse = {
   emailError?: string;
 };
 
+/** PATCH /lms/admin/enrollments/:enrollmentId/status — request body. */
+export type UpdateEnrollmentStatusInput = {
+  status: EnrollmentStatus;
+};
+
+/** PATCH /lms/admin/enrollments/:enrollmentId/status — returns the updated enrollment. */
+export type EnrollmentStatusUpdateResponse = Enrollment;
+
 /**
  * Student record with full enrollment history across all cohorts.
  * Admin-only.
