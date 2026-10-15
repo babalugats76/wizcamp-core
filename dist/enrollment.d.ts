@@ -9,7 +9,8 @@ export declare const EnrollmentStatus: {
 export type EnrollmentStatus = (typeof EnrollmentStatus)[keyof typeof EnrollmentStatus];
 /**
  * Valid status transitions for an enrollment.
- * Mirrors the server-side ALLOWED_TRANSITIONS in wizcamp-backend.
+ * Used by the onboarding/claim flow — intentionally broader than the
+ * admin PATCH handler's ALLOWED_TRANSITIONS in wizcamp-backend.
  */
 export declare const ENROLLMENT_TRANSITIONS: Record<EnrollmentStatus, EnrollmentStatus[]>;
 export type EnrollmentCounts = {
@@ -53,6 +54,12 @@ export type EnrollmentCreateResponse = {
     tokenSent: boolean;
     emailError?: string;
 };
+/** PATCH /lms/admin/enrollments/:enrollmentId/status — request body. */
+export type UpdateEnrollmentStatusInput = {
+    status: EnrollmentStatus;
+};
+/** PATCH /lms/admin/enrollments/:enrollmentId/status — returns the updated enrollment. */
+export type EnrollmentStatusUpdateResponse = Enrollment;
 /**
  * Student record with full enrollment history across all cohorts.
  * Admin-only.

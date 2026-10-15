@@ -12,7 +12,8 @@ exports.EnrollmentStatus = {
 // ─── Lookup maps ──────────────────────────────────────────────────────────────
 /**
  * Valid status transitions for an enrollment.
- * Mirrors the server-side ALLOWED_TRANSITIONS in wizcamp-backend.
+ * Used by the onboarding/claim flow — intentionally broader than the
+ * admin PATCH handler's ALLOWED_TRANSITIONS in wizcamp-backend.
  */
 exports.ENROLLMENT_TRANSITIONS = {
     [exports.EnrollmentStatus.PENDING_ONBOARDING]: [exports.EnrollmentStatus.ACTIVE, exports.EnrollmentStatus.REMOVED],
