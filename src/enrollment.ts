@@ -18,7 +18,8 @@ export type EnrollmentStatus = (typeof EnrollmentStatus)[keyof typeof Enrollment
 
 /**
  * Valid status transitions for an enrollment.
- * Mirrors the server-side ALLOWED_TRANSITIONS in wizcamp-backend.
+ * Used by the onboarding/claim flow — intentionally broader than the
+ * admin PATCH handler's ALLOWED_TRANSITIONS in wizcamp-backend.
  */
 export const ENROLLMENT_TRANSITIONS: Record<EnrollmentStatus, EnrollmentStatus[]> = {
   [EnrollmentStatus.PENDING_ONBOARDING]: [EnrollmentStatus.ACTIVE, EnrollmentStatus.REMOVED],
