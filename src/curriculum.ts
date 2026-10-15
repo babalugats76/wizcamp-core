@@ -166,7 +166,7 @@ export type MediaSignResult = Record<string, ResolvedMedia | null>;
 /** PATCH /lms/admin/media/:mediaId */
 export type UpdateMediaInput = {
   title?: string;
-  alt?: string;
+  alt?: string | null;
 };
 
 /** Unified student-facing page in a cohort curriculum. */
@@ -268,7 +268,7 @@ export type CreateUnitInput = {
 
 export type UpdateUnitInput = {
   title?: string;
-  description?: string;
+  description?: string | null;
   position?: number;
   isLocked?: boolean;
 };
