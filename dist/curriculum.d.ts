@@ -206,7 +206,6 @@ export type UpdatePageInput = {
     title?: string;
     content?: string;
     metadata?: PageMetadata;
-    expectedVersion?: number;
 };
 /** DELETE /lms/admin/cohorts/:cohortSlug/units/:unitId */
 export type UnitDeleteResponse = {
