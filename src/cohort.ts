@@ -37,7 +37,9 @@ export type Cohort = CohortIdentity &
     format: CohortFormat;
     unitLabel: UnitLabel;
     description: string | null;
+    /** ISO 8601 calendar date — YYYY-MM-DD. No time component. */
     startDate: string;
+    /** ISO 8601 calendar date — YYYY-MM-DD. No time component. */
     endDate: string;
     image: MediaImage | null;
     video: MediaVideo | null;
@@ -109,6 +111,10 @@ type CohortLinks = {
   trackName: CohortTrack['name'];
 };
 
+/**
+ * Create input for a cohort.
+ * `startDate` and `endDate` are ISO 8601 calendar dates (YYYY-MM-DD) with no time component.
+ */
 export type CreateCohortInput = Pick<
   Cohort,
   'cohortSlug' | 'campName' | 'name' | 'startDate' | 'endDate'
@@ -116,7 +122,10 @@ export type CreateCohortInput = Pick<
   Partial<Pick<Cohort, 'format' | 'unitLabel' | 'description' | 'image' | 'video'>> &
   CohortLinks;
 
-/** Omitted = unchanged; null = clear (description / image / video). */
+/**
+ * Omitted = unchanged; null = clear (description / image / video).
+ * `startDate` and `endDate` are ISO 8601 calendar dates (YYYY-MM-DD) with no time component.
+ */
 export type UpdateCohortInput = Partial<
   Pick<
     Cohort,

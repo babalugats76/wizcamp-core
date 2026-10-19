@@ -218,9 +218,9 @@ export type UpdateMeetingInput = {
   category?: MeetingCategory;
   startTime?: string;
   durationMinutes?: number;
-  zoomLink?: string;
+  joinUrl?: string;
   recordingUrl?: string;
-  description?: string;
+  agenda?: string;
 };
 
 /** Always an array — uniform shape regardless of editScope. */

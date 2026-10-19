@@ -2,7 +2,7 @@
 // CampSession is the public sales listing of a cohort, distinct from cohort.ts's Cohort (the LMS operational entity).
 
 import { Temporal } from 'temporal-polyfill';
-import type { CohortFormat } from './primitives';
+import type { CohortFormat, CohortProgram, CohortTrack } from './primitives';
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -59,8 +59,8 @@ export type Camp = {
   imageUrls: string[];
   emailImageUrl?: string;
   sessions: CampSession[];
-  program?: string;
-  track?: string;
+  program?: CohortProgram['name'];
+  track?: CohortTrack['name'];
 };
 
 // ─── Functions ────────────────────────────────────────────────────────────────

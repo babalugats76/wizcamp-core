@@ -1,5 +1,5 @@
 import { Temporal } from 'temporal-polyfill';
-import type { CohortFormat } from './primitives';
+import type { CohortFormat, CohortProgram, CohortTrack } from './primitives';
 export declare const CampStatus: {
     readonly UPCOMING: "upcoming";
     readonly IN_PROGRESS: "in-progress";
@@ -48,8 +48,8 @@ export type Camp = {
     imageUrls: string[];
     emailImageUrl?: string;
     sessions: CampSession[];
-    program?: string;
-    track?: string;
+    program?: CohortProgram['name'];
+    track?: CohortTrack['name'];
 };
 /**
  * Computes customer-facing display phase for a camp cohort.

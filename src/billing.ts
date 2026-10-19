@@ -46,8 +46,8 @@ export type PaymentToken = {
 
 /** Everything needed to complete a camp registration/purchase. */
 export type PaymentRequest = {
-  /** The id of the CampSession being purchased. Maps to CampSession.id from the /camps endpoint. */
-  cohortId: string;
+  /** The CampSession.id (Square ITEM_VARIATION id) being purchased. */
+  campSessionId: string;
   enrollee: Enrollee;
   registrant: Registrant;
   billing: BillingAddress;
