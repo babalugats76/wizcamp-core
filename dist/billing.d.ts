@@ -43,6 +43,13 @@ export type PaymentRequest = {
     registrant: Registrant;
     billing: BillingAddress;
     payment: PaymentToken;
+    /** Analytics-only. Never used for auth, pricing, or identity. */
+    attribution?: {
+        /** Provider-assigned anonymous visitor ID. Backend maps it to a provider field (e.g. PostHog distinctId). */
+        visitorId?: string;
+        sessionId?: string;
+        utm?: Record<string, string>;
+    };
 };
 export type PaymentConfirmation = {
     /** Square payment ID — surfaced as the order reference number. */
