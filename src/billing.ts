@@ -3,7 +3,11 @@
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-/** The student attending camp. */
+/**
+ * The person attending camp.
+ * `age` is collected only when a parent/guardian registers a minor; it is omitted
+ * when the enrollee registers themself (adult camps).
+ */
 export type Enrollee = {
   firstName: string;
   lastName: string;
@@ -12,7 +16,11 @@ export type Enrollee = {
   age?: number;
 };
 
-/** The parent/guardian completing the registration. */
+/**
+ * The person completing registration and payment: a parent/guardian for a minor
+ * enrollee, or the enrollee themself for adult camps (in which case name and email
+ * match the enrollee's).
+ */
 export type Registrant = {
   firstName: string;
   lastName: string;
