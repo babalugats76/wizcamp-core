@@ -1,7 +1,7 @@
 /**
  * The person attending camp.
- * `age` is collected only when a parent/guardian registers a minor; it is omitted
- * when the enrollee registers themself (adult camps).
+ * `age` is optional: the guardian flow collects it, the adult flow does not.
+ * It carries no meaning beyond the age itself; use `Registrant.isGuardian` to tell the flows apart.
  */
 export type Enrollee = {
     firstName: string;
@@ -11,15 +11,20 @@ export type Enrollee = {
     age?: number;
 };
 /**
- * The person completing registration and payment: a parent/guardian for a minor
- * enrollee, or the enrollee themself for adult camps (in which case name and email
- * match the enrollee's).
+ * The person completing registration and payment, and the cardholder identity sent to the
+ * payment processor. Independent of the enrollee: for adult camps it may be the enrollee or
+ * someone else (a spouse, an employer, a card in another name).
  */
 export type Registrant = {
     firstName: string;
     lastName: string;
     email: string;
     phone: string;
+    /**
+     * True when the registrant is the parent/guardian of a minor enrollee (guardian flow);
+     * false when an adult enrolls (adult flow), whoever pays.
+     */
+    isGuardian: boolean;
 };
 /**
  * Billing address collected during checkout.
