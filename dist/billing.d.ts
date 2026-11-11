@@ -1,3 +1,5 @@
+/** The settlement currency for all transactions. All Square catalog items are priced in this currency. */
+export declare const SETTLEMENT_CURRENCY: "USD";
 /** Who completes registration. Derived by the web client from the camp's resolved age range. */
 export type RegistrationMode = 'self' | 'guardian';
 /** Fields common to every enrollee, regardless of registration mode. */
