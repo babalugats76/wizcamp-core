@@ -6,8 +6,6 @@
 /** Who completes registration. Derived by the web client from the camp's resolved age range. */
 export type RegistrationMode = 'self' | 'guardian';
 
-export type GuardianRelationship = 'parent' | 'legal_guardian' | 'other';
-
 /** Fields common to every enrollee, regardless of registration mode. */
 export type Enrollee = {
   firstName: string;
@@ -39,12 +37,8 @@ export type Registrant = {
   phone: string;
 };
 
-/** `relationshipOther` is required exactly when `relationship` is `'other'`. */
-export type GuardianRelationshipDetail =
-  | { relationship: Exclude<GuardianRelationship, 'other'> }
-  | { relationship: 'other'; relationshipOther: string };
-
-export type GuardianRegistrant = Registrant & GuardianRelationshipDetail;
+/** The guardian's relationship to the camper — free text (e.g. 'parent', 'legal_guardian', 'aunt'). */
+export type GuardianRegistrant = Registrant & { relationship: string };
 
 export type SelfRegistration = {
   registrationMode: 'self';

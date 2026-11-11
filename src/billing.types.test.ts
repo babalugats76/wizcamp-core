@@ -4,8 +4,6 @@ import type {
   GuardianEnrollee,
   GuardianRegistrant,
   GuardianRegistration,
-  GuardianRelationship,
-  GuardianRelationshipDetail,
   PaymentRequest,
   PaymentToken,
   Registrant,
@@ -23,9 +21,8 @@ const registrant: Registrant = {
 };
 
 describe('billing registration contract types', () => {
-  it('exports the registration mode and relationship unions', () => {
+  it('exports the registration mode union', () => {
     expectTypeOf<RegistrationMode>().toEqualTypeOf<'self' | 'guardian'>();
-    expectTypeOf<GuardianRelationship>().toEqualTypeOf<'parent' | 'legal_guardian' | 'other'>();
   });
 
   it('Enrollee is the shared base with no age or phone', () => {
@@ -101,7 +98,7 @@ describe('billing registration contract types', () => {
 
   it('GuardianRegistration requires enrollee.age, rejects enrollee.phone and requires registrant.relationship', () => {
     expectTypeOf<GuardianRegistration['registrationMode']>().toEqualTypeOf<'guardian'>();
-    expectTypeOf<GuardianRegistration['registrant']>().toEqualTypeOf<GuardianRegistrant>();
+    expectTypeOf<GuardianRegistrant>().toEqualTypeOf<Registrant & { relationship: string }>();
 
     const noAge: GuardianRegistration = {
       registrationMode: 'guardian',
@@ -124,23 +121,6 @@ describe('billing registration contract types', () => {
     void noAge;
     void withPhone;
     void noRelationship;
-  });
-
-  it("relationshipOther is required exactly when relationship is 'other'", () => {
-    expectTypeOf<GuardianRelationshipDetail>().toEqualTypeOf<
-      | { relationship: 'parent' | 'legal_guardian' }
-      | { relationship: 'other'; relationshipOther: string }
-    >();
-
-    // @ts-expect-error relationshipOther is required when relationship is 'other'
-    const otherWithoutDetail: GuardianRelationshipDetail = { relationship: 'other' };
-    const parentWithDetail: GuardianRelationshipDetail = {
-      relationship: 'parent',
-      // @ts-expect-error relationshipOther is not accepted for 'parent'
-      relationshipOther: 'uncle',
-    };
-    void otherWithoutDetail;
-    void parentWithDetail;
   });
 
   it('Registration is the union of the two modes', () => {
