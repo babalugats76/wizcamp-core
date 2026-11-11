@@ -1,11 +1,6 @@
 // Commerce / billing domain types — Anti-Corruption Layer for Square; no Square terminology leaks through.
 // Exports checkout request shapes (Registration, Enrollee, Registrant, BillingAddress, PaymentToken) and payment responses.
 
-// ─── Constants ───────────────────────────────────────────────────────────────
-
-/** The settlement currency for all transactions. All Square catalog items are priced in this currency. */
-export const SETTLEMENT_CURRENCY = 'USD' as const;
-
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 /** Who completes registration. Derived by the web client from the camp's resolved age range. */
