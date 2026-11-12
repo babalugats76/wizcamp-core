@@ -50,14 +50,19 @@ export type GuardianRegistration = {
 export type Registration = SelfRegistration | GuardianRegistration;
 /**
  * Billing address collected during checkout.
- * Field names are normalized — the backend maps to Square's API names as needed.
+ * Field names are processor-agnostic — each consumer maps to its payment processor's
+ * field names as needed (e.g. Square's `locality`, `administrativeDistrictLevel1`).
+ *
+ * `postalCode` is optional because its presence and format are determined by the
+ * payment processor at tokenization time, not by the user's address form. The web
+ * client reads it back from the token result after a successful tokenize() call.
  */
 export type BillingAddress = {
     addressLine1: string;
     addressLine2?: string;
     city: string;
     state: string;
-    postalCode: string;
+    postalCode?: string;
     country: string;
 };
 /**
