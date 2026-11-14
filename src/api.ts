@@ -25,12 +25,19 @@ export const APISuccessResponseSchema = <T extends z.ZodTypeAny>(dataSchema: T) 
     message: z.string(),
   });
 
+/**
+ * Status convention (relied on by clients, see ApiError.retryable in wizcamp-web):
+ *   4xx — the backend rejected the request; the operation did not happen.
+ *   5xx — the outcome is unknown; resending the identical request is safe.
+ */
 export const APIErrorResponseSchema = z.object({
   success: z.literal(false),
   message: z.string(),
   statusCode: z.number(),
   service: z.string().optional(),
   fields: z.array(z.string()).optional(),
+  /** Failure code from the upstream service (e.g. Square's `GENERIC_DECLINE`), forwarded as-is. */
+  code: z.string().optional(),
 });
 
 export const APIResponseSchema = z.discriminatedUnion('success', [
@@ -60,6 +67,7 @@ export type Envelope<T> =
       reason: EnvelopeReason;
       service?: string;
       fields?: string[];
+      code?: string;
     };
 
 /**
@@ -107,6 +115,7 @@ export async function parseEnvelope<T>(res: Response): Promise<Envelope<T>> {
       reason: EnvelopeReason.REJECTED,
       ...(env.service && { service: env.service }),
       ...(env.fields && { fields: env.fields }),
+      ...(env.code && { code: env.code }),
     };
   }
 
