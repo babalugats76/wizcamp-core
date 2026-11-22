@@ -27,5 +27,7 @@ __exportStar(require("./enrollment"), exports);
 __exportStar(require("./cohort"), exports);
 __exportStar(require("./billing"), exports);
 __exportStar(require("./marketing"), exports);
+__exportStar(require("./calendar"), exports);
+__exportStar(require("./consultation"), exports);
 __exportStar(require("./api"), exports);
 //# sourceMappingURL=index.js.map

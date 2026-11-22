@@ -1,11 +1,24 @@
 "use strict";
 // Marketing domain types — Anti-Corruption Layer for external marketing platforms.
-// Exports waitlist, newsletter and event-registration request/response shapes, plus AttendeeRole.
+// Exports marketing topics/segments, newsletter and waitlist signup shapes, event-registration
+// request/response shapes, and the confirm/cancel token flows.
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AttendeeRole = void 0;
+exports.MarketingSegment = exports.MarketingTopic = void 0;
 // ─── Constants ────────────────────────────────────────────────────────────────
-exports.AttendeeRole = {
-    PARENT: 'parent',
-    STUDENT: 'student',
+/** Interest areas a contact can subscribe to. */
+exports.MarketingTopic = {
+    NEWSLETTER: 'newsletter',
+    CAMPS: 'camps',
+    EVENTS: 'events',
+    NEXTGEN: 'nextgen',
+    PRO: 'pro',
+    HOMESCHOOL: 'homeschool',
+    EDUCATOR: 'educator',
+};
+/** Audience cohorts a campaign can be sent to. */
+exports.MarketingSegment = {
+    SUBSCRIBERS: 'subscribers',
+    CUSTOMERS: 'customers',
+    WAITLIST: 'waitlist',
 };
 //# sourceMappingURL=marketing.js.map

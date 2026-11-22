@@ -41,6 +41,14 @@
       "types": "./dist/marketing.d.ts",
       "default": "./dist/marketing.js"
     },
+    "./calendar": {
+      "types": "./dist/calendar.d.ts",
+      "default": "./dist/calendar.js"
+    },
+    "./consultation": {
+      "types": "./dist/consultation.d.ts",
+      "default": "./dist/consultation.js"
+    },
     "./media": {
       "types": "./dist/media.d.ts",
       "default": "./dist/media.js"

@@ -1,37 +1,76 @@
-export declare const AttendeeRole: {
-    readonly PARENT: "parent";
-    readonly STUDENT: "student";
+import type { RegistrationMode } from './billing';
+/** Interest areas a contact can subscribe to. */
+export declare const MarketingTopic: {
+    readonly NEWSLETTER: "newsletter";
+    readonly CAMPS: "camps";
+    readonly EVENTS: "events";
+    readonly NEXTGEN: "nextgen";
+    readonly PRO: "pro";
+    readonly HOMESCHOOL: "homeschool";
+    readonly EDUCATOR: "educator";
 };
-export type AttendeeRole = (typeof AttendeeRole)[keyof typeof AttendeeRole];
-/** What wizcamp-web POSTs to /waitlist. */
-export type WaitlistEntry = {
+export type MarketingTopic = (typeof MarketingTopic)[keyof typeof MarketingTopic];
+/** Audience cohorts a campaign can be sent to. */
+export declare const MarketingSegment: {
+    readonly SUBSCRIBERS: "subscribers";
+    readonly CUSTOMERS: "customers";
+    readonly WAITLIST: "waitlist";
+};
+export type MarketingSegment = (typeof MarketingSegment)[keyof typeof MarketingSegment];
+/** What wizcamp-web POSTs to /newsletter. */
+export type NewsletterSignupInput = {
     email: string;
-    name?: string;
+    firstName?: string;
+    lastName?: string;
+    locale?: string;
+    timeZone?: string;
+    /** Honeypot — must be empty; bots fill it in. */
+    website?: string;
+};
+/** What wizcamp-web POSTs to /waitlist. */
+export type WaitlistSignupInput = NewsletterSignupInput & {
+    campSlug: string;
     campName?: string;
 };
-/** What the /waitlist endpoint returns on success. */
-export type WaitlistResponse = {
+/** What the newsletter and waitlist endpoints return on success (double opt-in pending). */
+export type SignupResponse = {
     success: true;
+    status: 'pending_confirmation';
 };
-/** What wizcamp-web POSTs to /newsletter. */
-export type NewsletterSubscription = {
-    email: string;
-    name?: string;
+/** What wizcamp-web POSTs to the double opt-in confirmation endpoint. */
+export type ConfirmInput = {
+    token: string;
 };
-/** What the /newsletter endpoint returns on success. */
-export type NewsletterResponse = {
+/** What the confirmation endpoint returns; `invalid` covers expired or unknown tokens. */
+export type ConfirmResponse = {
     success: true;
+    status: 'confirmed' | 'invalid';
 };
-/** What wizcamp-web POSTs to /events/:eventSlug/register. */
+/** What wizcamp-web POSTs to /marketing/events/:eventSlug/register */
 export type EventRegistrationInput = {
     eventSlug: string;
-    fullName: string;
+    firstName: string;
+    lastName: string;
     email: string;
-    attendeeRole?: AttendeeRole;
+    registrationMode: RegistrationMode;
+    marketingOptIn: boolean;
+    timeZone: string;
+    locale: string;
+    /** Honeypot — must be empty; bots fill it in. */
+    website?: string;
 };
-/** What the /events/:eventSlug/register endpoint returns on success. */
+/** What the /marketing/events/:eventSlug/register endpoint returns on success. */
 export type EventRegistrationResponse = {
     success: true;
-    alreadyRegistered: boolean;
+    status: 'registered';
+};
+/** What wizcamp-web POSTs to cancel an event registration. */
+export type CancelRegistrationInput = {
+    token: string;
+};
+/** What the cancel endpoint returns; `invalid` covers expired or unknown tokens. */
+export type CancelRegistrationResponse = {
+    success: true;
+    status: 'cancelled' | 'invalid';
 };
 //# sourceMappingURL=marketing.d.ts.map

@@ -9,5 +9,7 @@ export * from './enrollment';
 export * from './cohort';
 export * from './billing';
 export * from './marketing';
+export * from './calendar';
+export * from './consultation';
 export * from './api';
 //# sourceMappingURL=index.d.ts.map

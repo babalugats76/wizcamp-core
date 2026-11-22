@@ -40,11 +40,15 @@ export type SelfRegistration = {
     registrationMode: 'self';
     enrollee: SelfEnrollee;
     registrant: Registrant;
+    /** Whether the registrant opted in to marketing email. Flows into `PaymentRequest` and the marketing platform sync. */
+    marketingOptIn?: boolean;
 };
 export type GuardianRegistration = {
     registrationMode: 'guardian';
     enrollee: GuardianEnrollee;
     registrant: GuardianRegistrant;
+    /** Whether the guardian opted in to marketing email. Flows into `PaymentRequest` and the marketing platform sync. */
+    marketingOptIn?: boolean;
 };
 /** The resolved registration: who is enrolling and who is paying. Discriminated on `registrationMode`. */
 export type Registration = SelfRegistration | GuardianRegistration;

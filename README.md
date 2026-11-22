@@ -19,7 +19,9 @@ Single source of truth for all cross-repo types, enums, and Zod schemas. Prevent
 | `@wizcamp/core/auth` | `AuthUser`, `StudentClaim`, `AdminClaim` |
 | `@wizcamp/core/billing` | `PaymentRequest`, `PaymentResult` |
 | `@wizcamp/core/camp` | `Camp`, `CampCohort` (Square catalog shape) |
-| `@wizcamp/core/marketing` | Marketing-facing types |
+| `@wizcamp/core/marketing` | `MarketingTopic`, `MarketingSegment`, newsletter/waitlist signup + event registration shapes |
+| `@wizcamp/core/calendar` | `CalendarEvent`, `buildIcs`, `googleCalendarUrl`, `outlookCalendarUrl` |
+| `@wizcamp/core/consultation` | `ConsultationProgram`, `ConsultationSlotsResponse`, `ConsultationBookingInput`, `ConsultationBookingResponse`, `ConsultationCancelInput`, `ConsultationCancelResponse` |
 | `@wizcamp/core/media` | `MediaImage`, `MediaVideo`, `MediaAsset` |
 | `@wizcamp/core/api` | Shared API envelope types |
 | `@wizcamp/core/openrouter` | OpenRouter key + usage types |
