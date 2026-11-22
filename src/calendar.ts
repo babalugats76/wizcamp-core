@@ -32,7 +32,16 @@ const esc = (s: string) =>
 
 const NOTE = 'The join link is in your Wizcamp confirmation email.';
 
-/** RFC 5545 line folding: max 75 octets per line, continuations begin with a single space. */
+/**
+ * RFC 5545 §3.1 line folding: continuation lines begin with a single space.
+ *
+ * Folds at 75 **characters**, not 75 octets. For the ASCII content used in
+ * event titles and descriptions these are identical. If a title ever contains
+ * multi-byte UTF-8 characters (e.g. an em dash) a folded line could exceed
+ * 75 octets; calendar clients tolerate this in practice, but it is a known
+ * approximation. Fix by switching to a TextEncoder-based octet counter if
+ * non-ASCII titles become common.
+ */
 const fold = (line: string) => {
   const out: string[] = [];
   let rest = line;
