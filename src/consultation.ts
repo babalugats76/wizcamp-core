@@ -16,7 +16,7 @@ export type ConsultationProgram = (typeof ConsultationProgram)[keyof typeof Cons
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-/** What GET /consultation/slots returns: bookable ISO UTC starts and the slot length. */
+/** What GET /consultations/slots returns: bookable ISO UTC starts and the slot length. */
 export type ConsultationSlotsResponse = {
   success: true;
   /** ISO UTC start timestamps of bookable slots. */
@@ -24,7 +24,7 @@ export type ConsultationSlotsResponse = {
   slotMinutes: number;
 };
 
-/** What wizcamp-web POSTs to /consultation/book. */
+/** What wizcamp-web POSTs to POST /consultations. */
 export type ConsultationBookingInput = {
   slotStart: string;
   firstName: string;
@@ -41,10 +41,10 @@ export type ConsultationBookingInput = {
   website?: string;
 };
 
-/** What the /consultation/book endpoint returns on success. */
+/** What the POST /consultations endpoint returns on success. */
 export type ConsultationBookingResponse = { success: true; status: 'booked' };
 
-/** What wizcamp-web POSTs to cancel a consultation. */
+/** What wizcamp-web POSTs to POST /consultations/cancel. */
 export type ConsultationCancelInput = { token: string };
 
 /** What the cancel endpoint returns; `invalid` covers expired or unknown tokens. */
