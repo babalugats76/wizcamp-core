@@ -1,7 +1,7 @@
 "use strict";
 // Marketing domain types — Anti-Corruption Layer for external marketing platforms.
 // Exports marketing topics/segments, newsletter and waitlist signup shapes, event-registration
-// request/response shapes, and the confirm/cancel token flows.
+// request/response shapes, and the opt-in/cancel token flows.
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MarketingSegment = exports.MarketingTopic = void 0;
 // ─── Constants ────────────────────────────────────────────────────────────────

@@ -1,6 +1,6 @@
 // Marketing domain types — Anti-Corruption Layer for external marketing platforms.
 // Exports marketing topics/segments, newsletter and waitlist signup shapes, event-registration
-// request/response shapes, and the confirm/cancel token flows.
+// request/response shapes, and the opt-in/cancel token flows.
 
 import type { RegistrationMode } from './billing';
 
@@ -43,13 +43,13 @@ export type NewsletterSignupInput = {
 export type WaitlistSignupInput = NewsletterSignupInput & { campSlug: string; campName?: string };
 
 /** What the newsletter and waitlist endpoints return on success (double opt-in pending). */
-export type SignupResponse = { success: true; status: 'pending_confirmation' };
+export type SignupResponse = { success: true; status: 'pending_opt_in' };
 
-/** What wizcamp-web POSTs to the double opt-in confirmation endpoint. */
-export type ConfirmInput = { token: string };
+/** What wizcamp-web POSTs to POST /marketing/opt-in. */
+export type OptInInput = { token: string };
 
-/** What the confirmation endpoint returns; `invalid` covers expired or unknown tokens. */
-export type ConfirmResponse = { success: true; status: 'confirmed' | 'invalid' };
+/** What POST /marketing/opt-in returns; `invalid` covers expired or unknown tokens. */
+export type OptInResponse = { success: true; status: 'opted_in' | 'invalid' };
 
 /** What wizcamp-web POSTs to /marketing/events/:eventSlug/register */
 export type EventRegistrationInput = {

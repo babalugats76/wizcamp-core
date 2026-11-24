@@ -35,16 +35,16 @@ export type WaitlistSignupInput = NewsletterSignupInput & {
 /** What the newsletter and waitlist endpoints return on success (double opt-in pending). */
 export type SignupResponse = {
     success: true;
-    status: 'pending_confirmation';
+    status: 'pending_opt_in';
 };
-/** What wizcamp-web POSTs to the double opt-in confirmation endpoint. */
-export type ConfirmInput = {
+/** What wizcamp-web POSTs to POST /marketing/opt-in. */
+export type OptInInput = {
     token: string;
 };
-/** What the confirmation endpoint returns; `invalid` covers expired or unknown tokens. */
-export type ConfirmResponse = {
+/** What POST /marketing/opt-in returns; `invalid` covers expired or unknown tokens. */
+export type OptInResponse = {
     success: true;
-    status: 'confirmed' | 'invalid';
+    status: 'opted_in' | 'invalid';
 };
 /** What wizcamp-web POSTs to /marketing/events/:eventSlug/register */
 export type EventRegistrationInput = {
