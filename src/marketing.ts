@@ -8,21 +8,21 @@ import type { RegistrationMode } from './billing';
 
 /** Interest areas a contact can subscribe to. */
 export const MarketingTopic = {
-  NEWSLETTER: 'newsletter',
-  CAMPS: 'camps',
-  EVENTS: 'events',
-  NEXTGEN: 'nextgen',
-  PRO: 'pro',
-  HOMESCHOOL: 'homeschool',
-  EDUCATOR: 'educator',
+  NEWSLETTER: 'Newsletter',
+  CAMPS: 'Camps',
+  EVENTS: 'Events',
+  NEXTGEN: 'NextGen',
+  PRO: 'Pro',
+  HOMESCHOOL: 'Homeschool',
+  EDUCATOR: 'Educator',
 } as const;
 export type MarketingTopic = (typeof MarketingTopic)[keyof typeof MarketingTopic];
 
 /** Audience cohorts a campaign can be sent to. */
 export const MarketingSegment = {
-  SUBSCRIBERS: 'subscribers',
-  CUSTOMERS: 'customers',
-  WAITLIST: 'waitlist',
+  SUBSCRIBERS: 'Subscribers',
+  CUSTOMERS: 'Customers',
+  WAITLIST: 'Waitlist',
 } as const;
 export type MarketingSegment = (typeof MarketingSegment)[keyof typeof MarketingSegment];
 

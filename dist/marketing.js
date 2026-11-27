@@ -7,18 +7,18 @@ exports.MarketingSegment = exports.MarketingTopic = void 0;
 // ─── Constants ────────────────────────────────────────────────────────────────
 /** Interest areas a contact can subscribe to. */
 exports.MarketingTopic = {
-    NEWSLETTER: 'newsletter',
-    CAMPS: 'camps',
-    EVENTS: 'events',
-    NEXTGEN: 'nextgen',
-    PRO: 'pro',
-    HOMESCHOOL: 'homeschool',
-    EDUCATOR: 'educator',
+    NEWSLETTER: 'Newsletter',
+    CAMPS: 'Camps',
+    EVENTS: 'Events',
+    NEXTGEN: 'NextGen',
+    PRO: 'Pro',
+    HOMESCHOOL: 'Homeschool',
+    EDUCATOR: 'Educator',
 };
 /** Audience cohorts a campaign can be sent to. */
 exports.MarketingSegment = {
-    SUBSCRIBERS: 'subscribers',
-    CUSTOMERS: 'customers',
-    WAITLIST: 'waitlist',
+    SUBSCRIBERS: 'Subscribers',
+    CUSTOMERS: 'Customers',
+    WAITLIST: 'Waitlist',
 };
 //# sourceMappingURL=marketing.js.map

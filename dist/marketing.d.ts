@@ -1,20 +1,20 @@
 import type { RegistrationMode } from './billing';
 /** Interest areas a contact can subscribe to. */
 export declare const MarketingTopic: {
-    readonly NEWSLETTER: "newsletter";
-    readonly CAMPS: "camps";
-    readonly EVENTS: "events";
-    readonly NEXTGEN: "nextgen";
-    readonly PRO: "pro";
-    readonly HOMESCHOOL: "homeschool";
-    readonly EDUCATOR: "educator";
+    readonly NEWSLETTER: "Newsletter";
+    readonly CAMPS: "Camps";
+    readonly EVENTS: "Events";
+    readonly NEXTGEN: "NextGen";
+    readonly PRO: "Pro";
+    readonly HOMESCHOOL: "Homeschool";
+    readonly EDUCATOR: "Educator";
 };
 export type MarketingTopic = (typeof MarketingTopic)[keyof typeof MarketingTopic];
 /** Audience cohorts a campaign can be sent to. */
 export declare const MarketingSegment: {
-    readonly SUBSCRIBERS: "subscribers";
-    readonly CUSTOMERS: "customers";
-    readonly WAITLIST: "waitlist";
+    readonly SUBSCRIBERS: "Subscribers";
+    readonly CUSTOMERS: "Customers";
+    readonly WAITLIST: "Waitlist";
 };
 export type MarketingSegment = (typeof MarketingSegment)[keyof typeof MarketingSegment];
 /** What wizcamp-web POSTs to /newsletter. */
