@@ -6,9 +6,9 @@ exports.ConsultationProgram = void 0;
 // ─── Constants ────────────────────────────────────────────────────────────────
 /** The program a prospective family is asking about; `unsure` is the undecided default. */
 exports.ConsultationProgram = {
-    NEXTGEN: 'nextgen',
-    PRO: 'pro',
-    HOMESCHOOL: 'homeschool',
-    UNSURE: 'unsure',
+    NEXTGEN: 'NextGen',
+    PRO: 'Pro',
+    HOMESCHOOL: 'Homeschool',
+    UNSURE: 'Unsure',
 };
 //# sourceMappingURL=consultation.js.map

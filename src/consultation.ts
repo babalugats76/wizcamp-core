@@ -7,10 +7,10 @@ import type { RegistrationMode } from './billing';
 
 /** The program a prospective family is asking about; `unsure` is the undecided default. */
 export const ConsultationProgram = {
-  NEXTGEN: 'nextgen',
-  PRO: 'pro',
-  HOMESCHOOL: 'homeschool',
-  UNSURE: 'unsure',
+  NEXTGEN: 'NextGen',
+  PRO: 'Pro',
+  HOMESCHOOL: 'Homeschool',
+  UNSURE: 'Unsure',
 } as const;
 export type ConsultationProgram = (typeof ConsultationProgram)[keyof typeof ConsultationProgram];
 

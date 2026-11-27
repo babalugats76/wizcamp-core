@@ -1,10 +1,10 @@
 import type { RegistrationMode } from './billing';
 /** The program a prospective family is asking about; `unsure` is the undecided default. */
 export declare const ConsultationProgram: {
-    readonly NEXTGEN: "nextgen";
-    readonly PRO: "pro";
-    readonly HOMESCHOOL: "homeschool";
-    readonly UNSURE: "unsure";
+    readonly NEXTGEN: "NextGen";
+    readonly PRO: "Pro";
+    readonly HOMESCHOOL: "Homeschool";
+    readonly UNSURE: "Unsure";
 };
 export type ConsultationProgram = (typeof ConsultationProgram)[keyof typeof ConsultationProgram];
 /** What GET /consultation/slots returns: bookable ISO UTC starts and the slot length. */
